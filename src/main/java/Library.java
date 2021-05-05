@@ -5,10 +5,12 @@ public class Library {
 
     private ArrayList<Book> stock;
     private int capacity;
+    private HashMap<String, Integer> booksByGenre;
 
     public Library(int capacity){
         this.stock = new ArrayList<>();
         this.capacity = capacity;
+        this.booksByGenre = new HashMap<>();
     }
 
     public int stockCount() {
@@ -18,6 +20,15 @@ public class Library {
     public void addBookToStock(Book book){
         if (this.capacity > this.stockCount()) {
             this.stock.add(book);
+        }
+
+        String genre = book.getGenre();
+        if(this.booksByGenre.containsKey(genre)){
+            int bookCount = this.booksByGenre.get(genre);
+            bookCount ++;
+            this.booksByGenre.put(genre, bookCount);
+        } else {
+            this.booksByGenre.put(genre, 1);
         }
     }
 
@@ -30,14 +41,8 @@ public class Library {
         return null;
     }
 
-    public static void main(String[] args) {
 
-        HashMap<String, Integer> genres = new HashMap<String, Integer>();
-        genres.put("Sci-fi", 20);
-        genres.put("Romance", 15);
-        genres.put("Mystery", 17);
-
-        System.out.println(genres);
-        System.out.println(genres.get("Mystery"));
+    public int getGenreCount(String genre) {
+        return this.booksByGenre.get(genre);
     }
 }

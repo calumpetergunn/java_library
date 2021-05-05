@@ -18,7 +18,7 @@ public class Borrower {
 //
     public void addedToCollectionFromLibrary(Library library){
         Book book = library.removeFromStock();
-        this.collection.add(book);
+        this.addBookToCollection(book);
         }
 
 }

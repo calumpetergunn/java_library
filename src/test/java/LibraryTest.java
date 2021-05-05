@@ -56,6 +56,16 @@ public class LibraryTest {
 
     }
 
+    @Test
+    public void canIncreaseGenreCount(){
+        library.addBookToStock(book);
+        library.addBookToStock(book1);
+        library.addBookToStock(book2);
+
+        assertEquals(2, library.getGenreCount("Sci-fi"));
+        assertEquals(1, library.getGenreCount("Crime"));
+    }
+
 
 
 }
